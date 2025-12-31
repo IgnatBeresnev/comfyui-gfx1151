@@ -32,7 +32,9 @@ ComfyUI will be available at http://localhost:8188.
 
 Both options have the same pre-configured parameters, which are:
 
-* Allocate 8GB of VRAM (`shm_size`)
+* Allocate 8GB of shared memory (`shm_size`) for internal PyTorch / ComfyUI shenanigans, this should be enough. 
+  This should NOT be > than available RAM, otherwise it might cause your display server to crash. 
+  This is NOT the same as VRAM.
 * Mount `./ComfyUI` for the root of [ComfyUI](https://github.com/comfyanonymous/ComfyUI). If the directory is empty 
   when the container starts, it will copy a pre-cloned (baked in) version of ComfyUI. If it's not empty, it will be 
   used to run ComfyUI located in it. You can update this directory manually to use newer version of ComfyUI without 

@@ -6,7 +6,7 @@ services:
     image: ignatberesnev/comfyui-gfx1151:v0.1
     container_name: comfyui-gfx1151
 
-    # VRAM allocation
+    # Shared memory allocation, should not be > than available RAM, 8G should be plenty
     shm_size: 8G
 
     volumes:
