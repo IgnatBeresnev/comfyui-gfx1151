@@ -18,7 +18,8 @@ with [opencl-amd](https://aur.archlinux.org/packages/opencl-amd) packages.
 
 ## Get started now
 
-The Docker image is published to Docker Hub, so you can, but don't have to build it yourself.
+The Docker image is published to [Docker Hub](https://hub.docker.com/r/ignatberesnev/comfyui-gfx1151), 
+so you can, but don't have to build it yourself.
 
 There are two options:
 
