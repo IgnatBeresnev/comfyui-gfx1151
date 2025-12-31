@@ -56,8 +56,9 @@ There's nothing specific about the ComfyUI installation, you can actually bring 
 **flash-attention**, however, "doesn't work" out of the box if you run AMD's image. I'm saying "doesn't work" because, 
 as far as I understand, it doesn't have the frontend for it (the APIs), but it does have the backend: **Triton**. 
 So flash-attention can be "installed" with a special env variable `FLASH_ATTENTION_TRITON_AMD_ENABLE`, which makes 
-ComfyUI and other tools using flash-attention think that flash-attention is installed and works. You can see the lines 
-that do it in [Dockerfile](Dockerfile), and if you try to do it yourself, you'll notice that it executes very fast 
+ComfyUI and other tools using flash-attention think that flash-attention is installed and works (even though it's 
+triton under the hood, which is actually doing the job). You can see the lines that install it in 
+[Dockerfile](Dockerfile), and if you try to do it yourself, you'll notice that it executes very fast 
 (because flash-attention isn't actually built in full).
 
 It's worth noting that flash-attention is cloned from a specific branch `main_perf` -- I'm not sure why exactly, 
