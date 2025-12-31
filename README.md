@@ -32,16 +32,13 @@ ComfyUI will be available at http://localhost:8188.
 
 Both options have the same pre-configured parameters, which are:
 
-* Allocate 8GB of shared memory (`shm_size`) for internal PyTorch / ComfyUI shenanigans, this should be enough. 
-  This should NOT be > than available RAM, otherwise it might cause your display server to crash. 
-  This is NOT the same as VRAM.
+* Allocate 8GB of shared memory (`shm_size`) for internal PyTorch / ComfyUI shenanigans, this should be plenty, 
+  feel free to lower it. This should NOT be > than available RAM. This is NOT allocating VRAM.
 * Mount `./ComfyUI` for the root of [ComfyUI](https://github.com/comfyanonymous/ComfyUI). If the directory is empty 
   when the container starts, it will copy a pre-cloned (baked in) version of ComfyUI. If it's not empty, it will be 
   used to run ComfyUI located in it. You can update this directory manually to use newer version of ComfyUI without 
   having to re-download the image
 * Expose port `8188` for ComfyUI
-* Add some environment variables which are supposed to speed up ComfyUI and make it more resource efficient. Not sure 
-  if they actually help though, so feel free to drop them, especially if something doesn't work.
 * Add video + rendering devices and groups. While this just works on Arch, it might require some pre-requisite steps 
   on Ubuntu, I haven't checked.
 
@@ -73,9 +70,14 @@ see [this issue](https://github.com/ROCm/flash-attention/issues/27). I basically
 installations ([vLLM](https://community.frame.work/t/compiling-vllm-from-source-on-strix-halo/77241) and repos by 
 [kyuz0](https://github.com/kyuz0)), so I hope they know what they're doing :D
 
-Then there are some environment variables that are supposed to speed up ComfyUI and make it more resource efficient, 
-I guess ¯\_(ツ)_/¯ Again, I haven't had time to test it, but I saw it a bunch of times when trying to make the damn 
-thing work, so I always tried with them and retained them in the image.
+Initially, I [copied over](https://github.com/pccr10001/comfyui-gfx1151-fa/blob/e6e59be08ff439ab5f9799aa2161f70709fcd975/README.md?plain=1#L33) 
+some environment variables that were supposed to speed up ComfyUI / PyTorch and make it more resource efficient: 
+`PYTORCH_TUNABLEOP_ENABLED`, `MIOPEN_FIND_MODE` and `ROCBLAS_USE_HIPBLASLT` (not adding them as a codeblock to avoid 
+someone copy-pasting them). However, at least one of them not only made it worse when it comes to the speed, but I 
+believe it would crash my display server (X11) every now and then when running stable diffusion models. Apparently, 
+this is relatively common to see with AMD drivers in general, so I'm not entirely sure that those env variables were 
+100% responsible for the crashes (might've been something else), but removing all of them helped (at least for now), 
+so I've removed them from this repo's scripts too. If you also experience display server crashes, let me know.
 
 In [scripts](scripts) there are two scripts that can check if PyTorch and flash-attention work as expected and utilize 
 the iGPU. I used these when looking for a solution, they proved to be helpful, so I'm adding them to the image in case 
