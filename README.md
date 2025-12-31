@@ -26,7 +26,11 @@ There are two options:
 * Copy [docker-compose.yml](docker-compose.yml) and run `docker compose up -d`
 * Copy [docker-run.sh](docker-run.sh) and run `./docker-run.sh`
 
-Both have the same pre-configured parameters, which are:
+ComfyUI will be available at http://localhost:8188.
+
+#### Parameters
+
+Both options have the same pre-configured parameters, which are:
 
 * Allocate 8GB of VRAM (`shm_size`)
 * Mount `./ComfyUI` for the root of [ComfyUI](https://github.com/comfyanonymous/ComfyUI). If the directory is empty 
