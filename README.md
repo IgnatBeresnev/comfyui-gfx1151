@@ -1,6 +1,6 @@
 # ComfyUI for gfx1151 (Ryzen AI MAX)
 
-Dockernized ComfyUI with PyTorch & flash-attention for gfx1151 (AMD Strix Halo, Ryzen AI Max+ 395),
+Dockerized ComfyUI with PyTorch & flash-attention for gfx1151 (AMD Strix Halo, Ryzen AI Max+ 395),
 relying on AMD's pre-built and pre-configured environment (no custom wheels)
 
 **Last updated & tested**: Dec 31, 2025, on 6.18.2 (ArchLinux), AMD RYZEN AI MAX+ 395 (Framework Desktop), 
